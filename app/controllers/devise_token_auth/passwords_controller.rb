@@ -5,6 +5,11 @@ module DeviseTokenAuth
     before_action :set_user_by_token, only: [:update]
     before_action :validate_redirect_url_param, only: [:create, :edit]
     skip_after_action :update_auth_header, only: [:create, :edit]
+    after_filter :skip_set_cookies_header
+
+    def skip_set_cookies_header
+      request.session_options = {}
+    end 
 
     # this action is responsible for generating password reset tokens and
     # sending emails
