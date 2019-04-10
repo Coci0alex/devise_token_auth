@@ -7,6 +7,11 @@ module DeviseTokenAuth::Concerns::SetUserByToken
   included do
     before_action :set_request_start
     after_action :update_auth_header
+    before_action :disable_cookies
+  end
+  
+  def disable_cookies
+    request.session_options[:skip] = true
   end
 
   protected
