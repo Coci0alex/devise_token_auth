@@ -12,6 +12,7 @@ module DeviseTokenAuth::Concerns::SetUserByToken
   
   def disable_cookies
     request.session_options[:skip] = true
+    puts "VAR I DISABLE COOKIES"
   end
 
   protected
